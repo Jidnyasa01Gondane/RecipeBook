@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,9 @@ import { ShoppingService } from './shopping-list/shopping.service';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './recipe/recipe.service';
+import { DataStorageService } from './Shared/data-storage.service';
+import { HttpClient } from 'selenium-webdriver/http';
+
 
 @NgModule({
   declarations: [
@@ -35,9 +39,10 @@ import { RecipeService } from './recipe/recipe.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [ShoppingService,RecipeService],
+  providers: [ShoppingService,RecipeService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
