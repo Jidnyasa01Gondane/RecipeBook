@@ -3,6 +3,9 @@ import { Recipe } from './recipe.model';
 import { Ingredient } from '../Shared/ingrdient.model';
 import { ShoppingService } from '../shopping-list/shopping.service';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
+import { DataStorageService } from '../Shared/data-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,7 @@ export class RecipeService {
   recipeChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
-    new Recipe('Burger', 
+    /*new Recipe('Burger', 
     'Burger King',
     'https://amp.thisisinsider.com/images/5bbd187101145529745a9895-1536-1152.jpg',
     [
@@ -29,11 +32,20 @@ export class RecipeService {
       new Ingredient('Milk',1),
       new Ingredient('Coffee Beans',1),
     ]
-    )
+    )*/
   ];
-  constructor(private shoppingService : ShoppingService) { }
+  constructor(private shoppingService : ShoppingService,private httpClient: HttpClient, 
+    private authService: AuthService) { }
 
   getRecipe() {
+    const token = this.authService.getToken();
+    this.httpClient.get<Recipe[]> ('https://ng-recipe-book-ab9d8.firebaseio.com/recipe.json?auth='+token)
+      .subscribe(
+            (recipe : Recipe[]) => {
+                this.recipes = recipe;
+                this.setRecipes(this.recipes)
+            }
+        );
     return this.recipes.slice();
   }
 

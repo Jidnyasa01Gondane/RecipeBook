@@ -2,47 +2,37 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { HeaderComponent } from './header/header.component';
-import { RecipeComponent } from './recipe/recipe.component';
-import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipe/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipe/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { DropdownDirective } from './Shared/dropdown.directive';
-import { RecipeStartComponent } from './recipe/recipe-start/recipe-start.component';
 import { ShoppingService } from './shopping-list/shopping.service';
-import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './recipe/recipe.service';
 import { DataStorageService } from './Shared/data-storage.service';
-import { HttpClient } from 'selenium-webdriver/http';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth-guard.service';
+
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './Shared/shared.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { AuthModule } from './auth/auth.module';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipeComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    SharedModule,
+    ShoppingListModule,
+    AuthModule
   ],
-  providers: [ShoppingService,RecipeService, DataStorageService],
+  providers: [ShoppingService,RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
