@@ -2,6 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
 
+Recipe Book is application created in Angular where has two main components: 
+  a. Recipes
+  b. Shopping List
+  
+You need to Signup/SignIn to perform any oeration on the application. 
+Here we are fetching data for recipe from Firebase. You can preform following operations on the Recipe:
+  1. View the existing recipes.
+  2. Edit the Recipes.
+  3. Add new Recipes.
+  4. Add Ingredients from Recipes to Shopping list.
+  5. Save the newly added recipes on Firebase using the Manage option. 
+  
+In Shopping list, you can perform following opertions:
+  1. View the Ingredients in the Shopping list.
+  2. Edit the Ingredients in the Shopping list.
+  3. Add new Ingredients in the Shopping list.
+  4. Delete the Ingredients in the Shopping list if not required. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
